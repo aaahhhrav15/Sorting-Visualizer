@@ -1,0 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+}
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background-color:black;
+    padding:1% 2%;
+}
+.list li{
+    color:white;
+    padding:0 3rem 0 0;
+}
+.list{
+    display:flex;
+    list-style-type:none;
+}
+.logo h2{
+    color:white;
+}
