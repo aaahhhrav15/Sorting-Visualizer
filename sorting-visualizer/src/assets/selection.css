@@ -1,0 +1,15 @@
+label{
+    color:white;
+}
+input{
+    outline:none;
+    margin:1rem;
+}
+.sizeInput, .elements{
+    display:flex;
+    align-items:center;
+    padding-left:1rem;
+}
+span{
+    font-size:small;
+}
