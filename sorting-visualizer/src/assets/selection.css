@@ -13,3 +13,13 @@ input{
 span{
     font-size:small;
 }
+.boxes{
+    display:flex;
+    justify-content:center;
+}
+.box{
+    background-color:white;
+    margin:0.5rem;
+    padding:1rem;
+    border-radius:5px;
+}
