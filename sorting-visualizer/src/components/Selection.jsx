@@ -6,8 +6,7 @@ const Selection = () => {
   const [size, setSize] = useState();
   const [elements, setElements] = useState();
   const [arr,setArr] = useState([]);
-  const [sortedArr, setSortedArr] = useState([]);
-  const [sortingIndex, setSortingIndex] = useState(0);
+  const [color,setColor]=useState(); 
 
   const sizeChange = (event)=>{
     setSize(event.target.value);
@@ -29,11 +28,7 @@ const Selection = () => {
     }
   }
 
-  const swapper = ()=>{
-
-  }
-
-  const selectionSort = (array)=>{
+  const selectionSort = async(array)=>{
     const arrLength=array.length;
     const newArr=[...array];
     for(let i=0;i<arrLength-1;i++)
@@ -41,6 +36,8 @@ const Selection = () => {
       let minIndex=i;
       for(let j=i+1;j<arrLength;j++)
       {
+        setColor([minIndex, j]);
+        await new Promise(resolve => setTimeout(resolve, 800));
         if(newArr[j]<newArr[minIndex])
         {
           minIndex=j;
@@ -52,9 +49,8 @@ const Selection = () => {
         newArr[i]=newArr[minIndex];
         newArr[minIndex]=temp;
       }
+      setColor([]);
     }
-    setSortedArr([...newArr]);
-    setSortingIndex(arrLength);
   }
 
   return (
@@ -76,7 +72,8 @@ const Selection = () => {
         <div className="boxes">
           {
             arr.map((value,index)=>{
-              return <div className="box">{value}</div>
+              const bgColor = color && (color[0] === index || color[1] === index) ? 'green' : '';
+              return <div key={index} className="box" style={{ backgroundColor: bgColor }}>{value}</div>
             })
           }
         </div>
