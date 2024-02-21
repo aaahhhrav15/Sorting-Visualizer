@@ -7,6 +7,8 @@ const Selection = () => {
   const [elements, setElements] = useState();
   const [arr,setArr] = useState([]);
   const [color,setColor]=useState(); 
+  const [minIndexColor,setMinIndexColor]=useState();
+
 
   const sizeChange = (event)=>{
     setSize(event.target.value);
@@ -42,16 +44,19 @@ const Selection = () => {
         {
           minIndex=j;
         }
+        setColor([]);
       }
+      setMinIndexColor(minIndex);
+      await new Promise(resolve => setTimeout(resolve, 800));
       if(minIndex !== i)
       {
         let temp=newArr[i];
         newArr[i]=newArr[minIndex];
         newArr[minIndex]=temp;
-      }
-      setColor([]);
+      }      
     }
   }
+  
 
   return (
     <div className="selection">
@@ -72,7 +77,15 @@ const Selection = () => {
         <div className="boxes">
           {
             arr.map((value,index)=>{
-              const bgColor = color && (color[0] === index || color[1] === index) ? 'green' : '';
+              let bgColor = '';
+              if (color[0] === index || color[1] === index) 
+              {
+                bgColor = "green";
+              } 
+              else if (index === minIndexColor) 
+              {
+                bgColor = "red";
+              }
               return <div key={index} className="box" style={{ backgroundColor: bgColor }}>{value}</div>
             })
           }
